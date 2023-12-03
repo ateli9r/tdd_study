@@ -5,16 +5,17 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED OFF)
 set(CMAKE_CXX_EXTENSIONS ON)
 
+set(DCMAKE_CXX_FLAGS -Werror -Wall -Wextra)
 
 
 # testing
 enable_testing()
 
 add_executable(test_case test_case.cpp
-    src/dollar.cpp src/franc.cpp src/money.cpp
+    src/money.cpp
 )
 
-add_test(NAME test_case COMMAND test_case)
+add_test(NAME money_test_cases COMMAND test_case)
 
 
 
