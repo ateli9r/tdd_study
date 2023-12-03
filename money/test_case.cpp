@@ -1,12 +1,31 @@
 #include "../util/acutest.h"
 #include <stdexcept>
+#include "include/dollar.h"
+#include "include/franc.h"
 
-void test_case1() {
-    TEST_ASSERT(1 == 1);
-    TEST_ASSERT(1 != 0);
+void testMultiplication() {
+    auto five = Dollar(5);
+    TEST_ASSERT(Dollar(10) == five.times(2));
+    TEST_ASSERT(Dollar(15) == five.times(3));
 }
 
+void testEquality() {
+    TEST_ASSERT(Dollar(5) == Dollar(5));
+    TEST_ASSERT(Dollar(5) != Dollar(6));
+    TEST_ASSERT(Franc(5) == Franc(5));
+    TEST_ASSERT(Franc(5) != Franc(6));
+}
+
+void testFrancMultiplication() {
+    auto five = Franc(5);
+    TEST_ASSERT(Franc(10) == five.times(2));
+    TEST_ASSERT(Franc(15) == five.times(3));
+}
+
+
 TEST_LIST = {
-    {"test_case1", test_case1},
+    {"testMultiplication", testMultiplication},
+    {"testEquality", testEquality},
+    {"testFrancMultiplication", testFrancMultiplication},
     {nullptr, nullptr}
 };
