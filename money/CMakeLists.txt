@@ -14,8 +14,8 @@ enable_testing()
 add_executable(test_case test_case.cpp
     src/money.cpp
     src/bank.cpp
-    src/expression.cpp
     src/sum.cpp
+    # src/expression.cpp
 )
 
 add_test(NAME money_test_cases COMMAND test_case)

@@ -1,20 +1,20 @@
 #ifndef __MONEY_H__
 #define __MONEY_H__
 
-// #include "expression.h"
-// #include "bank.h"
+#include "../include/expression.h"
 #include <iostream>
 #include <string>
 using std::string;
 
 
 class Bank;
-class Expression;
+class Sum;
+class IExpression;
 
-class Money {
+class Money : public IExpression {
 private:
     int _amount;
-    std::string _currency;
+    string _currency;
 public:
     Money(int amount, string currency) {
         this->_amount = amount;
@@ -29,12 +29,11 @@ public:
     bool equals(Money* object);
     bool notEquals(Money* object);
 
-    Expression* plus(Money* addend);
+    IExpression* plus(Money* addend);
     Money* reduce(Bank* bank, string to);
 
     int amount();
     string currency();
-
 };
 
-#endif 
+#endif

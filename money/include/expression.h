@@ -4,17 +4,12 @@
 #include <string>
 using std::string;
 
-enum ExpressionType {
-    EXPRESSION,
-    MONEY,
-    SUM,
-};
+class Money;
+class Bank;
 
-class Expression {
-protected:
-    ExpressionType _expType;
+class IExpression {
 public:
-    void* reduce(string to);
+    virtual Money* reduce(Bank* bank, string to) { return nullptr; }
 };
 
 #endif

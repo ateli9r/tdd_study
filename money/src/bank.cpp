@@ -2,10 +2,9 @@
 #include "../include/money.h"
 #include "../include/expression.h"
 #include "../include/sum.h"
-#include "../include/pair.h"
 
-Money* Bank::reduce(Expression* source, string to) {
-    return (Money*) source->reduce(to);
+Money* Bank::reduce(IExpression* source, string to) {
+    return source->reduce(this, to);
 }
 
 Money* Bank::reduce(Money* source, string to) {

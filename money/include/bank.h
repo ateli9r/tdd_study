@@ -9,14 +9,14 @@ using std::string;
 using std::make_pair;
 
 class Money;
-class Expression;
 class Pair;
+class IExpression;
 
 class Bank {
 private:
     unordered_map<string, int> rates;
 public:
-    Money* reduce(Expression* source, string to);
+    Money* reduce(IExpression* source, string to);
     Money* reduce(Money* source, string to);
 
     string hashKey(string from, string to);

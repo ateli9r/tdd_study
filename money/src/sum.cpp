@@ -1,15 +1,10 @@
 #include "../include/sum.h"
 #include "../include/money.h"
-#include "../include/expression.h"
+#include "../include/bank.h"
 
-Sum::Sum(Money* augend, Money* addend) {
-    this->_augend = augend;
-    this->_addend = addend;
-    this->_expType = ExpressionType::SUM;
-}
-
-Money* Sum::reduce(string to) {
-    int amount = this->_augend->amount() + this->_addend->amount();
+Money* Sum::reduce(Bank* bank, string to) {
+    int amount = this->_augend->reduce(bank, to)->amount()
+        + this->_addend->reduce(bank, to)->amount();
     return new Money(amount, to);
 }
 

@@ -1,7 +1,6 @@
 #include "../include/money.h"
 #include "../include/sum.h"
 #include "../include/bank.h"
-#include "../include/expression.h"
 
 Money* Money::dollar(int amount) {
     return new Money(amount, "USD");
@@ -24,8 +23,8 @@ bool Money::notEquals(Money* object) {
     return !this->equals(object);
 }
 
-Expression* Money::plus(Money* addend) {
-    return (Expression*) new Sum(this, addend);
+IExpression* Money::plus(Money* addend) {
+    return new Sum(this, addend);
 }
 
 Money* Money::reduce(Bank* bank, string to) {
