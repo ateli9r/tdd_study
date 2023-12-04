@@ -10,24 +10,25 @@ Money* Money::franc(int amount) {
     return new Money(amount, "CHF");
 }
 
-Money* Money::times(int multiplier) {
+IExpression* Money::times(int multiplier) {
     return new Money(this->amount() * multiplier, this->currency());
 }
 
-bool Money::equals(Money* object) {
-    return this->amount() == object->amount()
-        && this->currency().compare(object->currency()) == 0;
+bool Money::equals(IExpression* object) {
+    auto money = (Money*) object;
+    return this->amount() == money->amount()
+        && this->currency().compare(money->currency()) == 0;
 }
 
-bool Money::notEquals(Money* object) {
+bool Money::notEquals(IExpression* object) {
     return !this->equals(object);
 }
 
-IExpression* Money::plus(Money* addend) {
+IExpression* Money::plus(IExpression* addend) {
     return new Sum(this, addend);
 }
 
-Money* Money::reduce(Bank* bank, string to) {
+IExpression* Money::reduce(Bank* bank, string to) {
     int rate = bank->rate(this->currency(), to);
     return new Money(this->amount() / rate, to);
 }

@@ -16,8 +16,8 @@ class Bank {
 private:
     unordered_map<string, int> rates;
 public:
-    Money* reduce(IExpression* source, string to);
-    Money* reduce(Money* source, string to);
+    IExpression* reduce(IExpression* source, string to);
+    IExpression* reduce(Money* source, string to);
 
     string hashKey(string from, string to);
     int rate(string from, string to);

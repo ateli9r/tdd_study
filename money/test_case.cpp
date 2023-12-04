@@ -26,7 +26,7 @@ void testSimpleAddition() {
     Money* five = Money::dollar(5);
     IExpression* sum = five->plus(five);
     Bank* bank = new Bank();
-    Money* reduced = bank->reduce(sum, "USD");
+    IExpression* reduced = bank->reduce(sum, "USD");
     TEST_ASSERT(Money::dollar(10)->equals(reduced)); // $10 == $5 + $5
 }
 
@@ -40,14 +40,14 @@ void testPlusReturnsSum() {
 void testReduceSum() {
     Sum* sum = new Sum(Money::dollar(3), Money::dollar(4));
     Bank* bank = new Bank();
-    Money* result = sum->reduce(bank, "USD");
+    IExpression* result = sum->reduce(bank, "USD");
     TEST_ASSERT(Money::dollar(7)->equals(result)); // $7 == $3 + $4
 }
 
 void testReduceMoneyDifferentCurrency() {
     Bank* bank = new Bank();
     bank->addRate("CHF", "USD", 2);
-    Money* result = bank->reduce(Money::franc(2), "USD");
+    IExpression* result = bank->reduce(Money::franc(2), "USD");
     TEST_ASSERT(Money::dollar(1)->equals(result)); // 2CHF == $1
 }
 
@@ -56,8 +56,8 @@ void testIdentityRate() {
 }
 
 void testMixedAddition() {
-    auto fiveBucks = Money::dollar(5);
-    auto tenFrancs = Money::franc(10);
+    IExpression* fiveBucks = Money::dollar(5);
+    IExpression* tenFrancs = Money::franc(10);
 
     auto bank = new Bank();
     bank->addRate("CHF", "USD", 2);

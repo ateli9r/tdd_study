@@ -24,13 +24,13 @@ public:
     static Money* dollar(int amount);
     static Money* franc(int amount);
 
-    Money* times(int multiplier);
+    IExpression* times(int multiplier);
     
-    bool equals(Money* object);
-    bool notEquals(Money* object);
+    bool equals(IExpression* object);
+    bool notEquals(IExpression* object);
 
-    IExpression* plus(Money* addend);
-    Money* reduce(Bank* bank, string to);
+    IExpression* plus(IExpression* addend);
+    IExpression* reduce(Bank* bank, string to);
 
     int amount();
     string currency();

@@ -3,11 +3,11 @@
 #include "../include/expression.h"
 #include "../include/sum.h"
 
-Money* Bank::reduce(IExpression* source, string to) {
+IExpression* Bank::reduce(IExpression* source, string to) {
     return source->reduce(this, to);
 }
 
-Money* Bank::reduce(Money* source, string to) {
+IExpression* Bank::reduce(Money* source, string to) {
     return source->reduce(this, to);
 }
 

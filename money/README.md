@@ -8,6 +8,8 @@
 - ~~Bank.reduce(Money)~~
 - ~~Money에 대한 통화 변환을 수행하는 Reduce~~
 - ~~Reduce(Bank, String)~~
+- Sum.plus
+- Expression.times
 - ~~$5 x 2 = $10~~
 - ~~amount를 private으로 만들기~~
 - ~~Dollar 부작용?~~
