@@ -66,6 +66,38 @@ void testMixedAddition() {
     TEST_ASSERT(Money::dollar(10)->equals(result));
 }
 
+void testSumPlusMoney() {
+    IExpression* fiveBucks = Money::dollar(5);
+    IExpression* tenFrancs = Money::franc(10);
+
+    Bank* bank = new Bank();
+    bank->addRate("CHF", "USD", 2);
+
+    IExpression* sum = (new Sum(fiveBucks, tenFrancs))->plus(fiveBucks);
+    Money* result = (Money*) bank->reduce(sum, "USD");
+
+    TEST_ASSERT(Money::dollar(15)->equals(result));
+}
+
+void testSumTimes() {
+    IExpression* fiveBucks = Money::dollar(5);
+    IExpression* tenFrancs = Money::franc(10);
+    
+    Bank* bank = new Bank();
+    bank->addRate("CHF", "USD", 2);
+
+    IExpression* sum = (new Sum(fiveBucks, tenFrancs))->times(2);
+    Money* result = (Money*) bank->reduce(sum, "USD");
+
+    TEST_ASSERT(Money::dollar(20)->equals(result));
+}
+
+// void testPlusSameCurrencyReturnsMoney() {
+//     IExpression* sum = Money::dollar(1)->plus(Money::dollar(1));
+//     Money* money = (Money*) sum;
+//     TEST_ASSERT(money->equals(Money::dollar(2)));
+// }
+
 TEST_LIST = {
     {"testMultiplication", testMultiplication},
     {"testEquality", testEquality},
@@ -76,5 +108,8 @@ TEST_LIST = {
     {"testReduceMoneyDifferentCurrency", testReduceMoneyDifferentCurrency},
     {"testIdentityRate", testIdentityRate},
     {"testMixedAddition", testMixedAddition},
+    {"testSumPlusMoney", testSumPlusMoney},
+    {"testSumTimes", testSumTimes},
+    // {"testPlusSameCurrencyReturnsMoney", testPlusSameCurrencyReturnsMoney},
     {nullptr, nullptr}
 };

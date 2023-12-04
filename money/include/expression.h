@@ -11,6 +11,7 @@ class IExpression {
 public:
     virtual IExpression* reduce(Bank* bank, string to) { return nullptr; }
     virtual IExpression* plus(IExpression* addend) { return nullptr; }
+    virtual IExpression* times(int multiplier) { return nullptr; }
 };
 
 #endif

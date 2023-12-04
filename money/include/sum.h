@@ -20,7 +20,8 @@ public:
     }
 
     IExpression* reduce(Bank* bank, string to);
-    IExpression* plus(IExpression addend);
+    IExpression* plus(IExpression* addend);
+    IExpression* times(int multiplier);
 
     IExpression* augend();
     IExpression* addend();
