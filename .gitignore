@@ -1,2 +1,3 @@
 build/
 xunit/*.pyc
+__pycache__/
