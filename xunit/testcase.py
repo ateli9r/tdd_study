@@ -1,3 +1,5 @@
+from testresult import TestResult
+
 class TestCase:
     def __init__(self, name):
         self.wasRun = None
@@ -5,13 +7,25 @@ class TestCase:
         self.name = name
     
     def setUp(self):
-        print('!!! setUp')
         self.wasRun = None
         self.wasSetUp = 1
-        # pass
     
-    def run(self):
+    def tearDown(self):
+        pass
+    
+    def run(self, result = None):
+        if result == None:
+            result = TestResult()
+            result.testStarted()
         self.setUp()
-        method = getattr(self, self.name)
-        method()
+
+        try:
+            method = getattr(self, self.name)
+            method()
+        except:
+            result.testFailed()
+
+        self.tearDown()
+        
+        return result
 
